@@ -1,5 +1,9 @@
 # WordPress Meta Box Helper
 
+## Installation
+
+`$ composer require horttcore/wp-meta-box`
+
 ## Usage
 
 * Extend `Horttcore\MetaBoxes\MetaBox()`
