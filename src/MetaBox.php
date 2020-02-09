@@ -48,7 +48,7 @@ abstract class MetaBox
      */
     public function register()
     {
-        add_action('save_post', [$this, 'savePost']);
+        add_action('save_post', [$this, 'savePost'], 10, 3);
         add_action('add_meta_boxes', [$this, 'addMetaBoxes']);
     }
 
@@ -71,8 +71,8 @@ abstract class MetaBox
      **/
     public function metaBox(\WP_Post $post)
     {
-        wp_nonce_field( 'save-' . $this->identifier, $this->identifier . '-nonce' );
-        $this->render( $post );
+        wp_nonce_field('save-' . $this->identifier, $this->identifier . '-nonce');
+        $this->render($post);
     }
 
 
@@ -82,7 +82,7 @@ abstract class MetaBox
      * @param WP_Post $post Post object
      * @return void
      */
-    abstract function render(\WP_Post $post);
+    abstract public function render(\WP_Post $post);
 
 
     /**
@@ -91,7 +91,7 @@ abstract class MetaBox
      * @param int $postId Post ID
      * @return void
      */
-    abstract function save(int $postId);
+    abstract public function save(int $postId, \WP_Post $post, bool $update);
 
 
     /**
@@ -99,13 +99,12 @@ abstract class MetaBox
      *
      * @param int $postId
      **/
-    public function savePost(int $postId)
+    public function savePost(int $postId, \WP_Post $post, bool $update)
     {
-        if ( !isset( $_POST[$this->identifier . '-nonce'] ) || !wp_verify_nonce( $_POST[$this->identifier . '-nonce'], 'save-' . $this->identifier ) )
+        if (!isset($_POST[$this->identifier . '-nonce']) || !wp_verify_nonce($_POST[$this->identifier . '-nonce'], 'save-' . $this->identifier)) {
             return;
+        }
 
-        $this->save($postId);
+        $this->save($postId, $post, $update);
     }
-
-
 }
