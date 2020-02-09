@@ -35,7 +35,7 @@ class MyMetaBox extends MetaBox
 		<?php
 	}
 
-	function save(int $postId): void
+	function save(int $postId, \WP_Post $post, bool $update): void
 	{
 		update_post_meta($postId, 'my-meta', sanitize_text_field($_POST['my-meta']));
 	}
@@ -43,6 +43,10 @@ class MyMetaBox extends MetaBox
 ```
 
 ## Changelog
+
+### v1.1.0
+
+* Add save_post args
 
 ### v1.0.0
 
