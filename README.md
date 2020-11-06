@@ -9,9 +9,17 @@
 * Extend `RalfHortt\MetaBoxes\MetaBox()`
 * You _MUST_ set `$this->identifier`, `$this->name`, `$this->screen` in the class constructor
 * You _CAN_ set the additional variables `$this->context`, `$this->priority`, `$this->callbackArgs`
-* Add a `render()` method
-* Add a `save()` method
+* You _MUST_ Add a `render()` method
+* You _CAN_ add a `save()` method
 * A nonce is added automatically and checked
+
+## Extend
+
+### Action
+
+* `do_action("before-meta-box-{$this->identifier}", $post, $callbackArgs)`
+* `do_action("after-meta-box-{$this->identifier}", $post, $callbackArgs)`
+* `do_action("saved-meta-box-{$this->identifier}", $postId, $post, $update)`
 
 ## Example
 
@@ -21,13 +29,17 @@ use RalfHortt\MetaBoxes\MetaBox;
 
 class MyMetaBox extends MetaBox
 {
-	protected $identifier = 'my-meta-box';
-	protected $name = 'My Meta Box';
-	protected $screen = ['post'];
-	protected $context = 'side';
-	protected $priority = 'high';
+	
+	public function __constuct()
+	{
+		$this->identifier = 'my-meta-box';
+		$this->name = __('My Meta Box', 'textdomain');
+		$this->screen = ['post'];
+		$this->context = 'side';
+		$this->priority = 'high';
+	}
 
-	function render(\WP_Post $post): void 
+	protected function render(\WP_Post $post): void 
 	{
 		?>
 		<label for="my-meta">Meta Label</label>
@@ -35,7 +47,7 @@ class MyMetaBox extends MetaBox
 		<?php
 	}
 
-	function save(int $postId, \WP_Post $post, bool $update): void
+	protected function save(int $postId, \WP_Post $post, bool $update): void
 	{
 		update_post_meta($postId, 'my-meta', sanitize_text_field($_POST['my-meta']));
 	}
@@ -44,10 +56,20 @@ class MyMetaBox extends MetaBox
 
 ## Changelog
 
-### v1.1.0
+### 2.0
+
+* Change namespace
+* Changed visibility of `render` and `save` form public to protected
+* Save method is now not mandatory
+* Added return type definition
+* Added action hooks
+* Validate `context` and `priority`
+* Fixed meta box callback arguments
+
+### 1.1
 
 * Add save_post args
 
-### v1.0.0
+### 1.0
 
 * Initial release
