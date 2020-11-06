@@ -30,7 +30,7 @@ use RalfHortt\MetaBoxes\MetaBox;
 class MyMetaBox extends MetaBox
 {
 	
-	public function __constuct()
+	public function __construct()
 	{
 		$this->identifier = 'my-meta-box';
 		$this->name = __('My Meta Box', 'textdomain');
