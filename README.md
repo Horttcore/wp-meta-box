@@ -2,11 +2,11 @@
 
 ## Installation
 
-`$ composer require horttcore/wp-meta-box`
+`$ composer require ralfhortt/wp-meta-box`
 
 ## Usage
 
-* Extend `Horttcore\MetaBoxes\MetaBox()`
+* Extend `RalfHortt\MetaBoxes\MetaBox()`
 * You _MUST_ set `$this->identifier`, `$this->name`, `$this->screen` in the class constructor
 * You _CAN_ set the additional variables `$this->context`, `$this->priority`, `$this->callbackArgs`
 * Add a `render()` method
@@ -17,7 +17,7 @@
 
 ```php
 <?php
-use Horttcore\MetaBoxes\MetaBox;
+use RalfHortt\MetaBoxes\MetaBox;
 
 class MyMetaBox extends MetaBox
 {
