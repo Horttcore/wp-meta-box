@@ -1,4 +1,5 @@
 <?php
+
 namespace RalfHortt\MetaBoxes;
 
 use Exception;
@@ -48,12 +49,12 @@ abstract class MetaBox
 
     public function addMetaBoxes(): void
     {
-        if ( !in_array($this->context, $this->validContext) ) {
-            throw new Exception( sprintf( 'Invalid context `%s` for meta box `%s`. Valid values are `normal`, `side` and `advanced`.', $this->context, $this->name));
+        if (!in_array($this->context, $this->validContext)) {
+            throw new Exception(sprintf('Invalid context `%s` for meta box `%s`. Valid values are `normal`, `side` and `advanced`.', $this->context, $this->name));
         }
-        
-        if ( !in_array($this->priority, $this->validPriorities) ) {
-            throw new Exception( sprintf( 'Invalid priority `%s` for meta box `%s`. Valid values are `default`, `high` and `low`.', $this->priority, $this->name));
+
+        if (!in_array($this->priority, $this->validPriorities)) {
+            throw new Exception(sprintf('Invalid priority `%s` for meta box `%s`. Valid values are `default`, `high` and `low`.', $this->priority, $this->name));
         }
 
         \add_meta_box($this->identifier, $this->name, [$this, 'metaBox'], $this->screen, $this->context, $this->priority, $this->callbackArgs);
@@ -69,7 +70,9 @@ abstract class MetaBox
 
     abstract protected function render(\WP_Post $post, array $callbackArgs): void;
 
-    protected function save(int $postId, \WP_Post $post, bool $update): void {}
+    protected function save(int $postId, \WP_Post $post, bool $update): void
+    {
+    }
 
     public function savePost(int $postId, \WP_Post $post, bool $update): void
     {
