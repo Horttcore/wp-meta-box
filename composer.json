@@ -2,7 +2,6 @@
     "name": "ralfhortt/wp-meta-box",
     "description": "A WordPress meta box helper",
     "license": "MIT",
-    "version": "1.0.0",
     "authors": [
         {
             "name": "Ralf Hortt",
