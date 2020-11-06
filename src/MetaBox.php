@@ -30,7 +30,7 @@ abstract class MetaBox
     protected $priority = 'default';
 
     /**
-     * @var array Data that should be set as the $args property of the box array (which is the second parameter passed to your callback).
+     * @var array Data that should be set as the property of the box array (which is the second parameter passed to your callback).
      */
     protected $callbackArgs = [];
 
