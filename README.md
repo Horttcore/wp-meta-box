@@ -58,7 +58,7 @@ class MyMetaBox extends MetaBox
 
 ### 3.0
 
-* Fix autoloader name resolution
+* Fix autoloader
 
 ### 2.0
 
