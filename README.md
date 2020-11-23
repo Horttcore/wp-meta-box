@@ -58,7 +58,7 @@ class MyMetaBox extends MetaBox
 
 ### 3.0
 
-* Fix autoloader
+* Fix PSR4 namespace
 
 ### 2.0
 
