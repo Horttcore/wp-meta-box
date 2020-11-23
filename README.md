@@ -56,6 +56,10 @@ class MyMetaBox extends MetaBox
 
 ## Changelog
 
+### 3.0
+
+* Fix autoloader name resolution
+
 ### 2.0
 
 * Change namespace
