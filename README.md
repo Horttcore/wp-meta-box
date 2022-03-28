@@ -39,7 +39,7 @@ class MyMetaBox extends MetaBox
 		$this->priority = 'high';
 	}
 
-	protected function render(\WP_Post $post): void 
+	protected function render(\WP_Post $post, array $callbackArgs): void
 	{
 		?>
 		<label for="my-meta">Meta Label</label>
